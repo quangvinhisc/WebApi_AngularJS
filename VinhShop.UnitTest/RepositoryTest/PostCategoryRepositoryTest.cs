@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 using VinhShop.Data.Infrastructure;
 using VinhShop.Data.Repositories;
@@ -35,11 +36,17 @@ namespace VinhShop.UnitTest.RepositoryTest
             category.Alias = "Test-category";
             category.Status = true;
 
+            //Error er = new Error();
+            //er.Message = "Test error";
+            //er.StackTrace = "Test error";
+            //er.CreatedDate = DateTime.Now;
+            //var result = objError.Add(er);
+
             var result = objRepository.Add(category);
             unitOfWork.Commit();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(4, result.ID);
+            Assert.AreEqual(6, result.ID);
         }
     }
 }

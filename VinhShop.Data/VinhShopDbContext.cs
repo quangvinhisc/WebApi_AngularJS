@@ -10,6 +10,8 @@ namespace VinhShop.Data
             this.Configuration.LazyLoadingEnabled = false;//chỉ load bảng cha
         }
 
+        public DbSet<Error> Errors { get; set; }
+
         public DbSet<Footer> Footers { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuGroup> MenuGroups { get; set; }
@@ -31,6 +33,7 @@ namespace VinhShop.Data
 
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
 
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

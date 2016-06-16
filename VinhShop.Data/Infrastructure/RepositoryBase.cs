@@ -9,7 +9,7 @@ namespace VinhShop.Data.Infrastructure
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         private VinhShopDbContext dataContext;
-        private readonly IDbSet<T> dbSet;
+        private IDbSet<T> dbSet;
 
         protected IDbFactory DbFactory
         {
