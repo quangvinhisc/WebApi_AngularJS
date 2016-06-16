@@ -7,13 +7,13 @@ namespace VinhShop.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddErrorTable : IMigrationMetadata
+    public sealed partial class InititalDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddErrorTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InititalDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606160259552_AddErrorTable"; }
+            get { return "201606161238415_InititalDB"; }
         }
         
         string IMigrationMetadata.Source
