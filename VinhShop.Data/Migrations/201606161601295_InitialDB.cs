@@ -3,7 +3,7 @@ namespace VinhShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InititalDB : DbMigration
+    public partial class InitialDB : DbMigration
     {
         public override void Up()
         {

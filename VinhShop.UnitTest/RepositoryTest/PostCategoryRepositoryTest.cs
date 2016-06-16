@@ -24,7 +24,7 @@ namespace VinhShop.UnitTest.RepositoryTest
         public void PostCategory_Repository_GetAll()
         {
             var list = objRepository.GetAll().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(57, list.Count);
         }
 
         [TestMethod]

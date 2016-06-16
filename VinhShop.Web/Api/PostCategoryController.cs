@@ -22,6 +22,15 @@ namespace VinhShop.Web.Api
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
+            //PostCategory category = new PostCategory();
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    category.Name = "Test category";
+            //    category.Alias = "Test-category";
+            //    category.Status = true;
+            //    var result = _postCategoryService.Add(category);
+            //    _postCategoryService.Save();
+            //}
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
