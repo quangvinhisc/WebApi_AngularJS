@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using VinhShop.Data.Infrastructure;
+using VinhShop.Data.Repositories;
 using VinhShop.Model.Models;
 using VinhShop.Service;
 using VinhShop.Web.Infrastructure.Core;
@@ -22,6 +24,7 @@ namespace VinhShop.Web.Api
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
+            #region Test 1
             //PostCategory category = new PostCategory();
             //for (int i = 0; i < 5; i++)
             //{
@@ -31,6 +34,20 @@ namespace VinhShop.Web.Api
             //    var result = _postCategoryService.Add(category);
             //    _postCategoryService.Save();
             //}
+            #endregion
+            #region Test 2
+            //IDbFactory dbFactory = new DbFactory(); ;
+            //IPostCategoryRepository objRepository = new PostCategoryRepository(dbFactory); 
+            //IUnitOfWork unitOfWork = new UnitOfWork(dbFactory);
+
+            //PostCategory category = new PostCategory();
+            //category.Name = "Test category";
+            //category.Alias = "Test-category";
+            //category.Status = true;
+
+            //var result = objRepository.Add(category);
+            //unitOfWork.Commit();
+            #endregion
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
