@@ -1,18 +1,24 @@
 ﻿/// <reference path="../plugins/angular/angular.js" />
 var App = angular.module("myModule", []);
-App.controller("StudentController", StudentController);
-App.controller("TeacherController", TeacherController);
 App.controller("SchoolController", SchoolController);
-
-function SchoolController($scope)
-{
-    $scope.message = "Example 1 from school";
+App.service("Validation", Validation);
+SchoolController.$inject = ["$scope", "Validation"];
+function SchoolController($scope, Validation) {
+    $scope.CheckNo = function () {
+        $scope.message = Validation.CheckNumber($scope.num);
+    }
 }
 
-function StudentController($scope) {
-    $scope.message = "Example 1 from Student";
-    //$rootScope.message = "Example 1 from Student";
-}
-function TeacherController($scope) {
-    $scope.message = "Example 1 from Teacher";
+function Validation($window) {
+    return {
+        CheckNumber: CheckNumber
+    }
+    function CheckNumber(input) {
+        if (input % 2 == 0) {
+            $window.alert("số chẵn");
+        }
+        else {
+            $window.alert("số lẻ");
+        }
+    }
 }
