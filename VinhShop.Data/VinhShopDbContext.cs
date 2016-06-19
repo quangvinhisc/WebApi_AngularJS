@@ -1,9 +1,10 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using VinhShop.Model.Models;
 
 namespace VinhShop.Data
 {
-    public class VinhShopDbContext : DbContext
+    public class VinhShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public VinhShopDbContext() : base("VinhShopConnection")
         {
@@ -33,8 +34,16 @@ namespace VinhShop.Data
 
         public DbSet<Error> Errors { get; set; }
 
+        public static VinhShopDbContext Create()
+        {
+            return new VinhShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(i => i.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }

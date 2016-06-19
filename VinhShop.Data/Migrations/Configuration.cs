@@ -1,5 +1,8 @@
 namespace VinhShop.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +29,29 @@ namespace VinhShop.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new VinhShopDbContext()));
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new VinhShopDbContext()));
+
+            var user = new ApplicationUser()
+            {
+                UserName = "VinhShop",
+                Email = "quangvinh050293@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Practise WebApi + AngularJS"
+            };
+
+            manager.Create(user, "0839406815@");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            var adminUser = manager.FindByEmail("quangvinh050293@gmail.com");
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
     }
 }
