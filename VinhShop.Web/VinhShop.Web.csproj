@@ -218,7 +218,6 @@
     <Content Include="app\components\products\productEditView.html" />
     <Content Include="app\components\products\productListController.js" />
     <Content Include="app\components\products\productListView.html" />
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -275,12 +274,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.routes.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
