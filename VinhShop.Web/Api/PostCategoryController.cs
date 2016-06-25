@@ -56,9 +56,9 @@ namespace VinhShop.Web.Api
             {
                 HttpResponseMessage response = null;
 
-                var listCategory = _postCategoryService.GetAll();
-                var listPostCagoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
-                response = request.CreateResponse(HttpStatusCode.OK, listPostCagoryVm);
+                var listPostCategory = _postCategoryService.GetAll();
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listPostCategory);
+                response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
                 return response;
             });

@@ -3,7 +3,7 @@ using VinhShop.Model.Models;
 
 namespace VinhShop.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
     }
 

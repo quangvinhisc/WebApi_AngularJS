@@ -11,6 +11,10 @@
             url: "/productAdd/",
             templateUrl: "/app/components/products/productAddView.html",
             controller: "productAddController"
+        }).state('productEdit', {
+            url: "/productEdit/",
+            templateUrl: "/app/components/products/productEditView.html",
+            controller: "productEditController"
         })
 
     }

@@ -1,10 +1,7 @@
-namespace VinhShop.Data.Migrations
+﻿namespace VinhShop.Data.Migrations
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
-    using System;
-    using System.Data.Entity;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -19,7 +16,7 @@ namespace VinhShop.Data.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data. E.g.
             //
             //    context.People.AddOrUpdate(
@@ -29,6 +26,8 @@ namespace VinhShop.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            CreateProductCategoryExample(context);
+            /*
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new VinhShopDbContext()));
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new VinhShopDbContext()));
@@ -51,7 +50,23 @@ namespace VinhShop.Data.Migrations
             }
 
             var adminUser = manager.FindByEmail("quangvinh050293@gmail.com");
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });*/
+        }
+
+        private void CreateProductCategoryExample(VinhShop.Data.VinhShopDbContext context)
+        {
+            if (context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> listProductCategory = new List<ProductCategory>()
+                {
+                    new ProductCategory() { Name="Điện lạnh",Alias="dien-lanh",Status=true },
+                    new ProductCategory() { Name="Viễn thông",Alias="vien-thong",Status=true },
+                    new ProductCategory() { Name="Đồ gia dụng",Alias="do-gia-dung",Status=true },
+                    new ProductCategory() { Name="Mỹ phẩm",Alias="my-pham",Status=true }
+                };
+                context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
         }
     }
 }
