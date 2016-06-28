@@ -25,12 +25,12 @@ namespace VinhShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int page, int pageSize)
+        public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _productCategoryService.GetAll();
+                var model = _productCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
