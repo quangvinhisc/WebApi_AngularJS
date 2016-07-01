@@ -30,9 +30,6 @@
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('No results return');
                 }
-                else {
-                    notificationService.displaySuccess('you found ' + result.data.TotalCount + ' record');
-                }
                 $scope.productCategories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;

@@ -7,6 +7,10 @@
             url: "/productCategories/",
             templateUrl: "/app/components/product_categories/productCategoryListView.html",
             controller: "productCategoryListController"
+        }).state('addProductCategory', {
+            url: "/addProductCategory/",
+            templateUrl: "/app/components/product_categories/productCategoryAddView.html",
+            controller: "productCategoryAddController"
         });
     }
 })();

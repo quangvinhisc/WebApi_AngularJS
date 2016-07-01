@@ -8,8 +8,8 @@
             "onclick": null,
             "fadeIn": 300,
             "fadeOut": 1000,
-            "timeOut": 3000,
-            "extendedTimeOut": 1000
+            "timeOut": 30,
+            "extendedTimeOut": 60
         };
         function displaySuccess(message) {
             toastr.success(message);
