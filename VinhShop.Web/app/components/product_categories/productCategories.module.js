@@ -3,7 +3,6 @@
     angular.module('vinhshop.productCategories', ['vinhshop.common']).config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        //$locationProvider.html5Mode(true);
         $stateProvider.state('productCategories', {
             url: "/productCategories/",
             templateUrl: "/app/components/product_categories/productCategoryListView.html",

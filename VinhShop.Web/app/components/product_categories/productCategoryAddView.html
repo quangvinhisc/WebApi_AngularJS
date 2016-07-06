@@ -16,26 +16,39 @@
             <h3 class="box-title">Thêm mới</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmAddProductCategory" role="form" ng-submit="AddProductCategory()">
+        <form class="form-horizontal" role="form" novalidate name="AddProductCategoryForm" ng-submit="AddProductCategory()">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" ng-model="productCategory.Name">
+                        <input type="text" class="form-control" ng-change="GetSeoTitle()"  required ng-minlength="5"  name="name" ng-model="productCategory.Name">
+                        <div ng-messages="AddProductCategoryForm.name.$error" ng-if="AddProductCategoryForm.name.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập tên danh mục</span>
+                            <span ng-message="minlength" class="has-errorLength">Độ dài tối thiểu là 5 kí tự</span>
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias">
+                        <input type="text" class="form-control" required ng-minlength="5" name="alias" ng-model="productCategory.Alias">
+                        <div ng-messages="AddProductCategoryForm.alias.$error" ng-if="AddProductCategoryForm.alias.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập tiêu đề SEO</span>
+                            <span ng-message="minlength" class="has-errorLength">Độ dài tối thiểu là 5 kí tự</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Miêu tả ngắn</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" ng-model="productCategory.Description">
+                        <input type="text" class="form-control" required ng-maxlength="200" name="description" ng-model="productCategory.Description">
+                        <div ng-messages="AddProductCategoryForm.description.$error" ng-if="AddProductCategoryForm.description.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập miêu tả</span>
+                            <span ng-message="maxlength" class="has-errorLength">Độ dài tối đa là 200 kí tự</span>
+                        </div>
                     </div>
                 </div>
 
@@ -52,7 +65,10 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder">
+                        <input type="text" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder">
+                        <div ng-messages="AddProductCategoryForm.displayOrder.$error" ng-if="AddProductCategoryForm.displayOrder.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập thứ tự</span>
+                        </div>
                     </div>
                 </div>
 

@@ -14,10 +14,18 @@ namespace VinhShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+                "Custom",
+                "{*url}",
+                new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+            //);
+
+            
         }
     }
 }
