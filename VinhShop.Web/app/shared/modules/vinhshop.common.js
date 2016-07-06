@@ -2,5 +2,5 @@
 (function () {
     'use strict';
     
-    angular.module('vinhshop.common', ['ui.router', 'ngMessages']);
+    angular.module('vinhshop.common', ['ui.router', 'ngMessages', 'ngBootbox']);
 })();
