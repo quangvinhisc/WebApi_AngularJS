@@ -1,1 +1,138 @@
-﻿<h1>this is Product Add</h1>
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thêm mới sản phẩm
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a ui-sref="products">Danh sách</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="AddProductForm" ng-submit="AddProduct()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên sản phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-custom" ng-change="GetSeoTitle()" required ng-minlength="5" name="name" ng-model="product.Name">
+                        <div ng-messages="AddProductForm.name.$error" ng-if="AddProductForm.name.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập tên danh mục</span>
+                            <span ng-message="minlength" class="has-errorLength">Độ dài tối thiểu là 5 kí tự</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-custom" required ng-minlength="5" name="alias" ng-model="product.Alias">
+                        <div ng-messages="AddProductForm.alias.$error" ng-if="AddProductForm.alias.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập tiêu đề SEO</span>
+                            <span ng-message="minlength" class="has-errorLength">Độ dài tối thiểu là 5 kí tự</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Miêu tả ngắn</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-custom" required ng-maxlength="200" name="description" ng-model="product.Description">
+                        <div ng-messages="AddProductForm.description.$error" ng-if="AddProductForm.description.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập miêu tả</span>
+                            <span ng-message="maxlength" class="has-errorLength">Độ dài tối đa là 200 kí tự</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
+                    <div class="col-sm-10">
+                        <select name="productCategoryID" ng-model="product.CategoryID" required ng-options="option.ID as option.Name for option in productCategories">
+                            <option value="">Chọn danh mục</option>
+                        </select>
+                        <div ng-messages="AddProductForm.productCategory.$error" ng-if="AddProductForm.productCategory.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập danh mục</span>
+                        </div>
+                        <input type="hidden" name="productCategoryID" ng-model="product.CategoryID" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Bảo hành</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-custom" name="warranty" ng-model="product.Warranty">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Giá</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-custom" name="price" required ng-model="product.Price">
+                        <div ng-messages="AddProductForm.price.$error" ng-if="AddProductForm.price.$touched">
+                            <span ng-message="required" class="has-error">Phải nhập giá</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Giá KM</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-custom" name="promotionPrice" ng-model="product.PromotionPrice">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả sản phẩm</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" ckeditor="ckeditorOptions" ng-model="product.Content"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-custom" name="metaKeyword" ng-model="product.MetaKeyword">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-custom" name="metaDescription" ng-model="productCategory.MetaDescription">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="product.Status" ng-checked="product.Status"> Kích hoạt
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag"> Hiển thị trang chủ
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag"> SP Hot
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="products" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-success pull-right">Save</button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /.box -->
+</section>

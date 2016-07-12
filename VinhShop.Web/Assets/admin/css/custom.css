@@ -4,3 +4,8 @@
 .has-errorLength{
     color:green;
 }
+
+.form-control-custom
+{
+    width:70%;
+}
