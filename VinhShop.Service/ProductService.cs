@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VinhShop.Common;
 using VinhShop.Data.Infrastructure;
 using VinhShop.Data.Repositories;
 using VinhShop.Model.Models;
@@ -22,18 +23,47 @@ namespace VinhShop.Service
 
     public class ProductService: IProductService
     {
-        IProductRepository _ProductRepository;
-        IUnitOfWork _unitOfWork;
+        private IProductRepository _ProductRepository;
+        private ITagRepository _TagRepository;
+        private IProductTagRepository _ProductTagRepository;
+        private IUnitOfWork _unitOfWork;
 
-        public ProductService(IProductRepository ProductRepository, IUnitOfWork unitOfWork)
+
+        public ProductService(IProductRepository ProductRepository, IProductTagRepository ProductTagRepository, ITagRepository TagRepository, IUnitOfWork unitOfWork)
         {
             this._ProductRepository = ProductRepository;
+            this._ProductTagRepository = ProductTagRepository;
+            this._TagRepository = TagRepository;
             this._unitOfWork = unitOfWork;
         }
 
         public Product Add(Product Product)
         {
-            return _ProductRepository.Add(Product);
+            var product = _ProductRepository.Add(Product);
+            _unitOfWork.Commit();
+            if (!string.IsNullOrEmpty(Product.Tags))
+            {
+
+                string[] tags = Product.Tags.Split(',');
+                for (int i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_TagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.ProductTag;
+                        _TagRepository.Add(tag);
+                    }
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = Product.ID;
+                    productTag.TagID = tagId;
+                    _ProductTagRepository.Add(productTag);
+                }
+            }
+            return product;
+
         }
 
         public Product Delete(int id)
@@ -68,6 +98,28 @@ namespace VinhShop.Service
         public void Update(Product Product)
         {
             _ProductRepository.Update(Product);
+            if (!string.IsNullOrEmpty(Product.Tags))
+            {
+                string[] tags = Product.Tags.Split(',');
+                for (int i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_TagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.ProductTag;
+                        _TagRepository.Add(tag);
+                    }
+                    _ProductTagRepository.DeleteMulti(x => x.ProductID == Product.ID);
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = Product.ID;
+                    productTag.TagID = tagId;
+                    _ProductTagRepository.Add(productTag);
+                }
+                
+            }
         }
     }
 }

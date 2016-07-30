@@ -41,5 +41,26 @@ namespace VinhShop.UnitTest.RepositoryTest
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.ID);
         }
+
+        [TestMethod]
+        public void PostCategory_Repository_Delete()
+        {
+            IDbFactory dbFactory = new DbFactory();
+            IPostCategoryRepository objRepository = new PostCategoryRepository(dbFactory);
+            IUnitOfWork unitOfWork = new UnitOfWork(dbFactory);
+
+            PostCategory category = new PostCategory();
+            category.Name = "Test category";
+            category.Alias = "Test-category";
+            category.Status = true;
+
+            var result = objRepository.Add(category);
+            unitOfWork.Commit();
+
+            var resultTest = objRepository.Delete(result.ID);
+            unitOfWork.Commit();
+            Assert.IsNotNull(resultTest);
+            Assert.AreEqual(63, resultTest.ID);
+        }
     }
 }

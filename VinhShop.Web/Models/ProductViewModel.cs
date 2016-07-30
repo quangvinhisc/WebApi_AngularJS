@@ -49,6 +49,8 @@ namespace VinhShop.Web.Models
 
         public bool Status { get; set; }
 
+        public string Tags { get; set; }
+
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
     }
 }

@@ -40,6 +40,7 @@ namespace VinhShop.Web.Infrastructure.Extensions
             productCategory.Image = productCategoryVm.Image;
             productCategory.HomeFlag = productCategoryVm.HomeFlag;
 
+
             productCategory.CreatedDate = productCategoryVm.CreatedDate;
             productCategory.CreatedBy = productCategoryVm.CreatedBy;
             productCategory.UpdatedDate = productCategoryVm.UpdatedDate;
@@ -93,6 +94,7 @@ namespace VinhShop.Web.Infrastructure.Extensions
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
+            product.Tags = productVm.Tags;
         }
     }
 }

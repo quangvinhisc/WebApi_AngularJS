@@ -20,6 +20,7 @@
 /// <reference path="../Assets/admin/js/pages/dashboard.js" />
 /// <reference path="../Assets/admin/js/pages/dashboard2.js" />
 /// <reference path="../Assets/admin/libs/angular/angular.js" />
+/// <reference path="../assets/admin/libs/angular-loading-bar/build/loading-bar.js" />
 /// <reference path="../Assets/admin/libs/angular-messages/angular-messages.js" />
 /// <reference path="../Assets/admin/libs/angular-ui-router/release/angular-ui-router.js" />
 /// <reference path="../Assets/admin/libs/bootbox/bootbox.js" />
