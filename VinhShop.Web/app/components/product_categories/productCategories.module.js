@@ -3,16 +3,22 @@
     angular.module('vinhshop.productCategories', ['vinhshop.common']).config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        $stateProvider.state('productCategories', {
+        $stateProvider
+        .state('productCategories', {
             url: "/productCategories/",
+            parent: 'base',
             templateUrl: "/app/components/product_categories/productCategoryListView.html",
             controller: "productCategoryListController"
-        }).state('addProductCategory', {
+        })
+        .state('addProductCategory', {
             url: "/addProductCategory/",
+            parent: 'base',
             templateUrl: "/app/components/product_categories/productCategoryAddView.html",
             controller: "productCategoryAddController"
-        }).state('editProductCategory', {
+        })
+        .state('editProductCategory', {
             url: "/editProductCategory/:id",
+            parent: 'base',
             templateUrl: "/app/components/product_categories/productCategoryEditView.html",
             controller: "productCategoryEditController"
         });
