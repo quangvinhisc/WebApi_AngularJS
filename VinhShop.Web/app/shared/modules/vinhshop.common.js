@@ -2,5 +2,5 @@
 (function () {
     'use strict';
     
-    angular.module('vinhshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'angular-loading-bar', 'ngMessages']);
+    angular.module('vinhshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'angular-loading-bar', 'ngMessages','LocalStorageModule']);
 })();

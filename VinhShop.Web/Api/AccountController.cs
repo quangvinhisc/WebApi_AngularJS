@@ -8,18 +8,38 @@ using System.Web.Http;
 using VinhShop.Web.App_Start;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security.Cookies;
 
 namespace VinhShop.Web.Api
 {
-    [RoutePrefix("api/account")]
+    [System.Web.Http.RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private const string XsrfKey = "XsrfId";
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.Current.GetOwinContext().Authentication;
+            }
+        }
+
         public AccountController()
         {
         }
+
+        private IAuthenticationManager Authentication
+        {
+            get { return Request.GetOwinContext().Authentication; }
+        }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -51,9 +71,9 @@ namespace VinhShop.Web.Api
             }
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("login")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.Route("login")]
         public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
         {
             if (!ModelState.IsValid)
@@ -63,5 +83,15 @@ namespace VinhShop.Web.Api
             var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
+
+        [System.Web.Http.Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+            System.Security.Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            return Ok();
+        }
+
     }
+
+    
 }

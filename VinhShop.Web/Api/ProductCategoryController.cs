@@ -15,6 +15,7 @@ using VinhShop.Web.Models;
 namespace VinhShop.Web.Api
 {
     [RoutePrefix("api/productcategory")]
+    [Authorize(Roles = "Admin")]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Initialize
@@ -27,7 +28,7 @@ namespace VinhShop.Web.Api
         }
         #endregion
 
-
+        [Authorize(Roles = "Admin")]
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -44,6 +45,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("getallparents")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
@@ -59,6 +61,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("getall")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
@@ -85,6 +88,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
@@ -113,6 +117,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
@@ -143,6 +148,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
@@ -168,6 +174,7 @@ namespace VinhShop.Web.Api
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]

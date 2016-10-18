@@ -22,7 +22,7 @@ namespace VinhShop.Web
             routes.MapRoute(
                 name: "default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "admin", action = "index", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin", action = "index", id = UrlParameter.Optional }
             );
 
 

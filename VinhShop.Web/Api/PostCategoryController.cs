@@ -26,6 +26,7 @@ namespace VinhShop.Web.Api
 
         // GET api/<controller>
         [Route("getall")]
+        [Authorize]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             #region Test 1
@@ -66,6 +67,7 @@ namespace VinhShop.Web.Api
 
         // POST api/<controller>
         [Route("add")]
+        [Authorize]
         public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -89,6 +91,7 @@ namespace VinhShop.Web.Api
 
         // PUT api/<controller>/5
         [Route("update")]
+        [Authorize]
         public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
@@ -111,6 +114,7 @@ namespace VinhShop.Web.Api
         }
 
         // DELETE api/<controller>/5
+        [Authorize]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

@@ -1,6 +1,9 @@
 ﻿namespace VinhShop.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -26,31 +29,31 @@
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            CreateProductCategoryExample(context);
-            /*
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new VinhShopDbContext()));
+            //CreateProductCategoryExample(context);
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new VinhShopDbContext()));
+            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new VinhShopDbContext()));
 
-            var user = new ApplicationUser()
-            {
-                UserName = "VinhShop",
-                Email = "quangvinh050293@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "Practise WebApi + AngularJS"
-            };
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new VinhShopDbContext()));
 
-            manager.Create(user, "0839406815@");
+            //var user = new ApplicationUser()
+            //{
+            //    UserName = "quangvinh050293",
+            //    Email = "quangvinhisc@gmail.com",
+            //    EmailConfirmed = true,
+            //    BirthDay = DateTime.Now,
+            //    FullName = "Đặng Quang Vinh"
+            //};
 
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
+            //manager.Create(user, "123456");
 
-            var adminUser = manager.FindByEmail("quangvinh050293@gmail.com");
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });*/
+            //if (!roleManager.Roles.Any())
+            //{
+            //    roleManager.Create(new IdentityRole { Name = "Admin" });
+            //    roleManager.Create(new IdentityRole { Name = "User" });
+            //}
+            
+            //var adminUser = manager.FindByEmail("quangvinhisc@gmail.com");
+            //manager.AddToRoles(adminUser.Id, new string[] { "Admin" });
         }
 
         private void CreateProductCategoryExample(VinhShop.Data.VinhShopDbContext context)

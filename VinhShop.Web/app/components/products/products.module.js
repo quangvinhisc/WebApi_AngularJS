@@ -1,6 +1,7 @@
 ﻿/// <reference path="E:\MyProject\VinhShop.Web\Assets/admin/libs/angular/angular.js" />
 (function () {
-    angular.module("vinhshop.products", ['vinhshop.common']).config(config);
+    var myapp = angular.module("vinhshop.products", ['vinhshop.common']);
+    myapp.config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -24,4 +25,7 @@
             })
 
     }
+    myapp.run(['authenticationService', function (authenticationService) {
+        authenticationService.init();
+    }]);
 })();
